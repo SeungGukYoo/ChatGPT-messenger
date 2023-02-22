@@ -1,15 +1,12 @@
-import "../styles/globals.css";
-import SideBar from "../components/SideBar";
-import { SessionProvider } from "../components/SessionProvider";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
-import Login from "../components/Login";
+import '../styles/globals.css';
+import SideBar from '../components/SideBar';
+import { SessionProvider } from '../components/SessionProvider';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../pages/api/auth/[...nextauth]';
+import Login from '../components/Login';
+import ClientProvider from '../components/ClientProvider';
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
   return (
     <html>
@@ -23,8 +20,7 @@ export default async function RootLayout({
               <div className="bg-[#202123] max-w-sx h-screen overflow-y-auto md:min-w-[20rem]">
                 <SideBar />
               </div>
-
-              {/*  clientProvider - notification*/}
+              <ClientProvider />
               <div className="bg-[#353541] flex-1">{children}</div>
             </div>
           )}
