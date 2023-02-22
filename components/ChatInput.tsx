@@ -14,7 +14,7 @@ type Props = {
 function ChatInput({ chatId }: Props) {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
-  const model = "text-davinci";
+  const model = "text-davinci-003";
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!prompt) return;
@@ -33,8 +33,6 @@ function ChatInput({ chatId }: Props) {
 
     const notification = toast.loading("ChatGPT is thinking");
     await addDoc(collection(db, "users", session?.user?.email!, "chats", chatId, "messages"), message);
-
-    // toast notification
 
     await fetch("/api/askQuestion", {
       method: "POST",
