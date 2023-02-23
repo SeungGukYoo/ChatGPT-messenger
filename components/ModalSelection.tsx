@@ -11,6 +11,7 @@ function ModalSelection() {
   const { data: model, mutate: setModel } = useSWR("model", {
     fallbackData: "text-davinci-003",
   });
+
   return (
     <div className="mt-2">
       <Select //
@@ -25,9 +26,9 @@ function ModalSelection() {
           //
           control: (state) => "bg-[#434654] border-[#434654]",
         }}
-      ></Select>
+      />
     </div>
   );
 }
 
-export default ModalSelection;
+export default React.memo(ModalSelection);
