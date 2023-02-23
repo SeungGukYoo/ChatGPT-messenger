@@ -18,7 +18,7 @@ function SideBar() {
       <div className="flex-1">
         <div>
           <NewChat />
-          <div className="hiddeln sm:inline">
+          <div className="hidden md:inline">
             <ModalSelection />
           </div>
           <div className="flex flex-col space-y-2 my-2">
