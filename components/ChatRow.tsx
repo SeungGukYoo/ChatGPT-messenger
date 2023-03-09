@@ -1,15 +1,16 @@
-import Link from "next/link";
+import { collection, deleteDoc, doc } from "@firebase/firestore";
 import { ChatBubbleLeftIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, deleteDoc, doc } from "@firebase/firestore";
 import { db } from "../firebase";
 
 type Props = {
   id: string;
 };
+
 function ChatRow({ id }: Props) {
   const pathname = usePathname();
 
@@ -21,7 +22,7 @@ function ChatRow({ id }: Props) {
 
   const removeChat = async () => {
     await deleteDoc(doc(db, "users", session?.user?.email!, "chats", id));
-    
+
     router.replace("/");
   };
 
